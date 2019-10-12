@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  proxy:
+    build:
+      context: ../
+      target: caddy
+      dockerfile: ./build/Dockerfile
+    ports:
+      - "9090:9090"
+    command: "./caddy run --config config.json"
+    networks:
+      - demo
+
+  protected:
+    build:
+      context: ../
+      target: protected
+      dockerfile: ./build/Dockerfile
+    command: "./protected"
+    expose:
+      - "8080"
+    networks:
+      - demo
+
+networks:
+  demo:
