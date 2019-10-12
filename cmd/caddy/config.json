@@ -8,6 +8,24 @@
           ],
           "routes": [
             {
+              "group": "oauth",
+              "match": [
+                  {
+                      "path": ["/oauth2/"]
+                  }
+              ],
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "oauth:7777"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "group": "protected",
               "handle": [
                 {
