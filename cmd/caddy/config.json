@@ -1,0 +1,28 @@
+{
+  "apps": {
+    "http": {
+      "servers": {
+        "gateway": {
+          "listen": [
+            ":9090"
+          ],
+          "routes": [
+            {
+              "group": "protected",
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "protected:8080"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
