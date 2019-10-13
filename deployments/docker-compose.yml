@@ -30,7 +30,6 @@ services:
       - OAUTH2_PROXY_REDIRECT_URL=http://localhost:9090/oauth2/callback
       - OAUTH2_PROXY_COOKIE_SECURE=false
       - OAUTH2_PROXY_COOKIE_DOMAIN=localhost
-      - OAUTH2_PROXY_UPSTREAM=http://localhost:3000
       - OAUTH2_PROXY_CLIENT_ID
       - OAUTH2_PROXY_COOKIE_SECRET
       - OAUTH2_PROXY_CLIENT_SECRET
