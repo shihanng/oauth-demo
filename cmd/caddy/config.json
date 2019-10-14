@@ -8,11 +8,13 @@
           ],
           "routes": [
             {
-              "group": "oauth",
+              "group": "oauth2",
               "match": [
-                  {
-                      "path": ["/oauth2/"]
-                  }
+                {
+                  "path": [
+                    "/oauth2/"
+                  ]
+                }
               ],
               "handle": [
                 {
@@ -27,7 +29,18 @@
             },
             {
               "group": "protected",
+              "match": [
+                {
+                  "path": [
+                    "/protected/"
+                  ]
+                }
+              ],
               "handle": [
+                {
+                  "handler": "authreq",
+                  "auth_endpoint": "http://oauth:7777/oauth2/auth"
+                },
                 {
                   "handler": "reverse_proxy",
                   "upstreams": [
@@ -35,6 +48,23 @@
                       "dial": "protected:8080"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "group": "index",
+              "match": [
+                {
+                  "path": [
+                    "/"
+                  ]
+                }
+              ],
+              "handle": [
+                {
+                  "handler": "static_response",
+                  "status_code": 200,
+                  "body": "<a href=\"/oauth2/sign_in\">sign_in</a>, <a href=\"/protected/\">protected</a>"
                 }
               ]
             }

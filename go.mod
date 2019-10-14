@@ -1,4 +1,4 @@
-module oauth-demo
+module github.com/shihanng/authreq
 
 go 1.13
 
