@@ -7,7 +7,9 @@ services:
       dockerfile: ./build/Dockerfile
     ports:
       - "9090:9090"
-    command: "./caddy run --config config.json"
+    volumes:
+      - ../configs:/var/lib/caddy
+    command: "./caddy run --config /var/lib/caddy/caddy_config.json"
     networks:
       - demo
 

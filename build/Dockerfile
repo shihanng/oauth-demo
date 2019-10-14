@@ -11,4 +11,3 @@ COPY --from=builder /go/src/authreq/protected .
 FROM alpine:3.10 AS caddy
 WORKDIR /root/
 COPY --from=builder /go/src/authreq/caddy .
-COPY --from=builder /go/src/authreq/cmd/caddy/config.json .
