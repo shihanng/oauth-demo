@@ -11,6 +11,10 @@ import (
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
 )
 
+const (
+	xAuthEmailHeader = "X-Auth-Request-Email"
+)
+
 func init() {
 	if err := caddy.RegisterModule(Middleware{}); err != nil {
 		log.Fatal(fmt.Errorf("authreq: failed to register module: %w", err))
@@ -57,6 +61,7 @@ func (m Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddy
 	}
 
 	if authResp.StatusCode == http.StatusAccepted {
+		r.Header.Set(xAuthEmailHeader, authResp.Header.Get(xAuthEmailHeader))
 		return next.ServeHTTP(w, r)
 	}
 

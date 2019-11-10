@@ -7,7 +7,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[len("/protected/"):])
+	fmt.Fprintf(w, "Hi there, I love %s!\nEmail: %s",
+		r.URL.Path[len("/protected/"):],
+		r.Header.Get("X-Auth-Request-Email"))
 }
 
 func main() {
