@@ -15,3 +15,4 @@ export OAUTH2_PROXY_CLIENT_SECRET=
 ```
 docker-compose -f deployments/docker-compose.yml up --build
 ```
+Then visit <http://localhost:9090>
