@@ -27,7 +27,7 @@ services:
   oauth:
     image: quay.io/pusher/oauth2_proxy:v4.0.0
     environment:
-      - OAUTH2_PROXY_EMAIL_DOMAINS=*
+      - OAUTH2_PROXY_EMAIL_DOMAINS
       - OAUTH2_PROXY_HTTP_ADDRESS=:7777
       - OAUTH2_PROXY_REDIRECT_URL=http://localhost:9090/oauth2/callback
       - OAUTH2_PROXY_COOKIE_SECURE=false
